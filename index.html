@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>keyboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <title>Title</title>
+    <style>
+.bodyer {
+    position: relative;
+    padding: 0rem;
+    margin: 0rem;
+    background-color: #888888;
+    transition: top 1s ease-in-out;
+    -moz-transition:top 1s  ease-in-out;
+    -webkit-transition: top 1s  ease-in-out;
+    -o-transition: top 1s  ease-in-out;
+}
+
+.block {
+    height: 80vh;
+    background-color: #005000;
+}
+
+.auto1 {
+    width: 75%;
+    height: 10rem;
+    line-height: 10rem;
+    margin: 0 auto;
+    background-color: #0B2E45
+}
+
+.auto2 {
+    width: 75%;
+    height: 10rem;
+    line-height: 10rem;
+    margin: 0 auto;
+    background-color: #1d1d39
+}
+
+.auto-keyboard {
+    width: 100%;
+    outline: none;
+    font-size: 1.5rem;
+    height: 2rem;
+    border: none;
+}
+    </style>
+</head>
+<body class="bodyer">
+<div class="block"></div>
+<div class="auto1">
+    <input class="auto-keyboard" placeholder="keyboard 1"/>
+</div>
+<div class="auto2">
+    <input class="auto-keyboard" placeholder="keyboard 2"/>
+</div>
+<script>
+/*
+    1、通过对相对依赖定位的body进行top偏移。
+        其中_target.clientHeight可以替换为个人认为合适的值。
+        当然可以编码页面期定义为元素的属性，通过值获取来记性个人化偏移
+    2、但让也可以单独定位特定元素，监听获得焦点和失去焦点事件
+*/
+var _body = document.querySelector("body");
+window.addEventListener("focusin", function () {
+    var event = event || window.event;
+    var _target = event.target;
+    _body.style.top = (-_target.offsetTop + _body.scrollTop + _target.clientHeight) + "px";
+});
+window.addEventListener("focusout", function () {
+    _body.style.top = "0px"
+});
+</script>
+</body>
+</html>
